@@ -40,10 +40,16 @@ Annotate time serieses using hot keys.
 
 #### Hot keys
 
-← - previous
-→ - next
-1 - normal
-space - normal
-2 - edge case
-3 - anomaly
-ctrl/cmd + s - save
+- ← - previous  
+- → - next  
+- 1 - normal  
+- space - normal  
+- 2 - edge case  
+- 3 - anomaly  
+- ctrl/cmd + s - save  
+
+## Other apps
+
+### All data viewer
+
+Here you can search through entire dataset.
