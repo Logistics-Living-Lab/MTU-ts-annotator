@@ -25,10 +25,10 @@ time_series_default_values = [
     "contour_deviation_1",
     "current_1",
 ]
-default_axis = "Y"
-default_direction = "GL"
-default_mv_avg_window_size_frac = "0.05"
-default_speed = "F2000"
+DEFAULT_AXIS = "Y"
+DEFAULT_DIRECTION = "GL"
+DEFAULT_MV_AVG_WINDOW_SIZE_FRAC = "0.05"
+DEFAULT_SPEED = "F2000"
 CLASS2TEXT = {
     "": "Unlabeled",
     "normal": "✅ Normal",
@@ -71,16 +71,16 @@ if "reference_table" not in st.session_state:
     st.session_state.reference_table = pd.DataFrame()
 if "selected_mv_avg_window_size_frac" not in st.session_state:
     st.session_state.selected_mv_avg_window_size_frac = (
-        default_mv_avg_window_size_frac
+        DEFAULT_MV_AVG_WINDOW_SIZE_FRAC
     )
 if "row_id" not in st.session_state:
     st.session_state.row_id = 0
 if "axis" not in st.session_state:
-    st.session_state.axis = default_axis
+    st.session_state.axis = DEFAULT_AXIS
 if "measure_direction" not in st.session_state:
-    st.session_state.measure_direction = default_direction
+    st.session_state.measure_direction = DEFAULT_DIRECTION
 if "speed" not in st.session_state:
-    st.session_state.speed = default_speed
+    st.session_state.speed = DEFAULT_SPEED
 if "filtered_table" not in st.session_state:
     st.session_state.filtered_table = pd.DataFrame()
 if "content_name" not in st.session_state:
@@ -215,7 +215,7 @@ if st.session_state.content_name == "feature_selection":
             "Select moving average window size fraction",
             mv_avg_window_size_fracs,
             index=mv_avg_window_size_fracs.index(
-                default_mv_avg_window_size_frac
+                DEFAULT_MV_AVG_WINDOW_SIZE_FRAC
             ),
         )
         mv_avg_submitted = st.form_submit_button("Apply")
@@ -253,7 +253,7 @@ if st.session_state.content_name == "feature_selection":
             measure_direction = single_selection_row[0].selectbox(
                 "measure_direction",
                 measure_directions,
-                index=measure_directions.index(default_direction),
+                index=measure_directions.index(DEFAULT_DIRECTION),
             )
             axes = list(
                 sorted(st.session_state.reference_table["axis"].unique())
@@ -261,7 +261,7 @@ if st.session_state.content_name == "feature_selection":
             axis = single_selection_row[1].selectbox(
                 "axis",
                 axes,
-                index=axes.index(default_axis),
+                index=axes.index(DEFAULT_AXIS),
             )
             single_submitted = st.form_submit_button("Apply")
 
@@ -286,6 +286,11 @@ if st.session_state.content_name == "feature_selection":
             speed_possible_values = list(
                 sorted(filtered_table["speed"].unique())
             )
+            if DEFAULT_SPEED in speed_possible_values:
+                default_speed = DEFAULT_SPEED
+            else:
+                default_speed = speed_possible_values[0]
+
             speed = st.selectbox(
                 "speed",
                 speed_possible_values,
