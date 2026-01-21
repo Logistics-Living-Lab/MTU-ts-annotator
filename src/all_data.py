@@ -5,7 +5,6 @@ import streamlit as st
 
 from src.components.plot_filtered_result import plot_filtered_result
 
-
 APP_DATA_PATH = Path("artifacts/app_data/")
 if not APP_DATA_PATH.is_dir():
     st.error(f"No data found in {APP_DATA_PATH}. Please run ETL first.")

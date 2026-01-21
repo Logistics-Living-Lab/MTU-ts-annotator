@@ -358,17 +358,19 @@ if st.session_state.content_name == "plots":
     if st.session_state.filtered_table.empty:
         st.warning("No data available for the selected options.")
     else:
+        st.dataframe(st.session_state.filtered_table)
         row = st.session_state.filtered_table.iloc[st.session_state.row_id]
         take_action_on_hotkey(
             filtered_table_len=len(st.session_state.filtered_table)
         )
         row = st.session_state.filtered_table.iloc[st.session_state.row_id]
-        st.session_state.row_id = st.slider(
-            "Select row",
-            min_value=0,
-            max_value=len(st.session_state.filtered_table) - 1,
-            value=st.session_state.row_id,
-        )
+        if not len(st.session_state.filtered_table) == 1:
+            st.session_state.row_id = st.slider(
+                "Select row",
+                min_value=0,
+                max_value=len(st.session_state.filtered_table) - 1,
+                value=st.session_state.row_id,
+            )
         # tmp_table = st.session_state.filtered_table[["class"]].reset_index()\
         #     .drop_duplicates().
         ids = st.session_state.filtered_table.reset_index()[
