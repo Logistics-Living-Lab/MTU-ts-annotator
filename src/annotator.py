@@ -358,7 +358,7 @@ if st.session_state.content_name == "plots":
     if st.session_state.filtered_table.empty:
         st.warning("No data available for the selected options.")
     else:
-        st.dataframe(st.session_state.filtered_table)
+        st.dataframe(st.session_state.filtered_table.reset_index())
         row = st.session_state.filtered_table.iloc[st.session_state.row_id]
         take_action_on_hotkey(
             filtered_table_len=len(st.session_state.filtered_table)

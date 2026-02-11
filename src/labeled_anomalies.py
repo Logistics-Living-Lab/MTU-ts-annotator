@@ -68,7 +68,7 @@ def plot_time_series(
     df = pd.concat(rows, ignore_index=True)
     st.header(type_.capitalize())
     plot_filtered_result(
-        filtered_table=df,
+        filtered_table=df.drop_duplicates().reset_index(drop=True),
         time_series=st.session_state.selected_time_series,
     )
 
